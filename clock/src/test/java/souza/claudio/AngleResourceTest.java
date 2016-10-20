@@ -33,8 +33,8 @@ public class AngleResourceTest {
     }
 
     /**
-     * Test return message from method AngleMinute0 with valid parameter
-     * Sample taken from Email
+     * Test return message from method AngleMinute0 with valid parameter Sample
+     * taken from Email
      */
     @Test
     public void testAngleMinute0() {
@@ -43,22 +43,59 @@ public class AngleResourceTest {
     }
 
     /**
-     * Test return message from method Angle with valid parameter
-     * Sample taken from Email
+     * Test return message from method Angle with valid parameter Sample taken
+     * from Email
      */
     @Test
     public void testAngle() {
         String responseMsg = target.path("/9").request().get(String.class);
         assertEquals("{\"angle\":90}", responseMsg);
+
     }
 
     /**
-     * Test return message from method Angle with valid parameter /6/0
-     * Sample taken from Email
+     * Test return message from Angle with invalid parameter
+     */
+    @Test
+    public void testAngleInvalid() {
+        String responseMsg = target.path("/-1").request().get(String.class);
+        assertEquals("{\"angle\":-1}", responseMsg);
+    }
+
+    /**
+     * Test return message from method Angle with valid parameter /6/0 Sample
+     * taken from Email
      */
     @Test
     public void testAngle60() {
         String responseMsg = target.path("/6/0").request().get(String.class);
         assertEquals("{\"angle\":180}", responseMsg);
+    }
+
+    /**
+     * Test return message from method Angle with invalid parameter /12/0
+     */
+    @Test
+    public void testAngleInvalidFirst() {
+        String responseMsg = target.path("/12/0").request().get(String.class);
+        assertEquals("{\"angle\":-1}", responseMsg);
+    }
+
+    /**
+     * Test return message from method Angle with invalid parameters /11/62
+     */
+    @Test
+    public void testAngleInvalidSecond() {
+        String responseMsg = target.path("/11/62").request().get(String.class);
+        assertEquals("{\"angle\":-1}", responseMsg);
+    }
+
+    /**
+     * Test return message from method Angle with invalid parameter /-3/60
+     */
+    @Test
+    public void testAngleInvalidBoth() {
+        String responseMsg = target.path("/-3/60").request().get(String.class);
+        assertEquals("{\"angle\":-1}", responseMsg);
     }
 }
