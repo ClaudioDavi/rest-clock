@@ -59,7 +59,7 @@ public class AngleResourceTest {
     @Test
     public void testAngleInvalid() {
         String responseMsg = target.path("/-1").request().get(String.class);
-        assertEquals("{\"angle\":-1}", responseMsg);
+        assertEquals("Invalid Parameter", responseMsg);
     }
 
     /**
@@ -78,7 +78,7 @@ public class AngleResourceTest {
     @Test
     public void testAngleInvalidFirst() {
         String responseMsg = target.path("/12/0").request().get(String.class);
-        assertEquals("{\"angle\":-1}", responseMsg);
+        assertEquals("Invalid Parameter", responseMsg);
     }
 
     /**
@@ -87,7 +87,7 @@ public class AngleResourceTest {
     @Test
     public void testAngleInvalidSecond() {
         String responseMsg = target.path("/11/62").request().get(String.class);
-        assertEquals("{\"angle\":-1}", responseMsg);
+        assertEquals("Invalid Parameter", responseMsg);
     }
 
     /**
@@ -96,6 +96,6 @@ public class AngleResourceTest {
     @Test
     public void testAngleInvalidBoth() {
         String responseMsg = target.path("/-3/60").request().get(String.class);
-        assertEquals("{\"angle\":-1}", responseMsg);
+        assertEquals("Invalid Parameter", responseMsg);
     }
 }

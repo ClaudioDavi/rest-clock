@@ -24,7 +24,9 @@ public class AngleResource {
 
         ang.setAngle(hour, minute);
         ang.getValues().putIfAbsent(key, ang.getAngle());
-
+        if ((int) ang.getValues().get(key) == -1) {
+            return "Invalid Parameter";
+        }
         return "{\"angle\":" + ang.getValues().get(key) + "}";
     }
 
@@ -37,7 +39,9 @@ public class AngleResource {
 
         ang.setAngle(hour, 00);
         ang.getValues().putIfAbsent(key, ang.getAngle());
-
+        if ((int) ang.getValues().get(key) == -1) {
+            return "Invalid Parameter";
+        }
         return "{\"angle\":" + ang.getValues().get(key) + "}";
     }
 }
